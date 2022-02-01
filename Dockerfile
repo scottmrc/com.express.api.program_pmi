@@ -11,5 +11,4 @@ RUN cd ${SERVER_DIR} && \
 
 WORKDIR ${SERVER_DIR}
 
-#ENTRYPOINT [ "PORT=${NODE_PORT}", "REDCAP_API_URL=${REDCAP_API_URL}", "REDCAP_API_TOKEN=${REDCAP_API_TOKEN}", "node", "bin/www" ]
 ENTRYPOINT [ "node", "bin/www" ]
