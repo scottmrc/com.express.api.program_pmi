@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 
 module.exports.auth = async (req, res) => {
 
-    const validPassword = req.body.password === process.env.PASSWORD ? true : false
+    const validPassword = req.body.password === process.env.LOGIN_PASSWORD ? true : false
     const doc = await Users.findOne({ email: req.body.email }, { _id: 0, email: 1, active: 1 })
 
     if (validPassword && doc && doc.active) {
