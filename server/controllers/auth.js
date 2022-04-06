@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 module.exports.auth = async (req, res) => {
 
     const validPassword = req.body.password === process.env.LOGIN_PASSWORD ? true : false
-    const doc = await Users.findOne({ email: req.body.email }, { _id: 0, email: 1, active: 1 })
+    const doc = await Users.findOne({ email: { '$regex': new RegExp(req.body.email, 'i') } }, { _id: 0, email: 1, active: 1 })
 
     if (validPassword && doc && doc.active) {
         const token = jwt.sign({ email: req.body.email }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' })
